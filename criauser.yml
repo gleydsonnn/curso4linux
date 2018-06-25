@@ -1,0 +1,46 @@
+---
+
+# Playbook para criar usuário
+
+- name: Tarefas Criação de usuários
+  hosts: all
+  tasks:
+   - name: criando o usuario no servidor
+     user:
+      name: "{{item}}"
+      shell: /bin/shell
+      createhome: yes
+     with_items:
+      - devops
+      - gleydson
+      - developer
+      - 4linux
+
+- name: Instalando
+  hosts: all
+  tasks:
+   - name: Instalando pacotes debian
+     apt:
+      name: "{{item}}"
+      state: present
+     with_items:
+      - vim
+      - nano
+      - sl
+      - ccze
+      - dnsutils
+     ignore_errors: yes
+
+   - name: Instalando pacotes Centos
+     yum:
+      name: "{{item}}"
+      state: present
+     with_items:
+      - vim
+      - nano
+      - sl
+      - ccze
+      - bind-utils
+      - epel-release
+     ignore_errors: yes
+

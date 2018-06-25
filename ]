@@ -1,0 +1,16 @@
+# Playbook para criar usuário
+
+- name: Criando usuario no servidor
+  hosts: all
+  vars:
+   - username: devops,Gleydson,developer,4linux
+
+  tasks:
+   - name: criando o usuario no servidor
+     user:
+      name: "{{username}}"
+      shell: /bin/shell
+      createhome: yes
+
+
+-

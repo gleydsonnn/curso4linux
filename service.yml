@@ -1,0 +1,22 @@
+---
+- name: garantir pacotes basicos do sistema
+  hosts: all
+  tasks:
+   - name: instalando pacotes
+     apt: 
+      name: "{{item}}"
+      state: present
+     with_items:
+      - vim 
+      - nano
+     ignore_errors: yes
+
+   - name: instalando pacotes centos
+     yum:
+      name: "{{item}}"
+      state: present
+     with_items:
+      - vim
+      - nano
+     ignore_errors: yes 
+    
